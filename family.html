@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Family Mugs - Fistiq Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/WhatsApp Image 2025-07-09 at 11.20.47 PM.png" alt="Fistiq Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#products" class="nav-link">Products</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+      <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <section class="about">
+    <h2>Family Mugs</h2>
+    <p>Celebrate your loved ones with our custom illustrated mugs for families. Capture the warmth, unity, and love of your family in elegant designs that last a lifetime.</p>
+  </section>
+
+  <section class="products">
+    <div class="cards">
+      <!-- Repeat for each image -->
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 024816.png" alt="Family Mug 1"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 024905.png" alt="Family Mug 2"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 024943.png" alt="Family Mug 3"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025041.png" alt="Family Mug 4"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025118.png" alt="Family Mug 5"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025152.png" alt="Family Mug 6"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025232.png" alt="Family Mug 7"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025320.png" alt="Family Mug 8"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025357.png" alt="Family Mug 9"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025515.png" alt="Family Mug 10"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025552.png" alt="Family Mug 11"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025629.png" alt="Family Mug 12"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025717.png" alt="Family Mug 13"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025751.png" alt="Family Mug 14"></div>
+      <div class="card"><img src="images/folder family/Screenshot 2025-07-10 025818.png" alt="Family Mug 15"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="order-now">
+    <h2>Order Now Your Design!</h2>
+    <p><strong>📞 Phone:</strong> <a href="tel:+962799437000">+962 79 943 7000</a></p>
+    <p><strong>📷 Instagram:</strong> <a href="https://instagram.com/fistiq.store" target="_blank">@fistiq.store</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Fistiq Store</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="close-lightbox" class="lightbox-close">&times;</button>
+    <img id="lightbox-img" src="" alt="Full Image" />
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.getElementById("close-lightbox");
+
+      document.querySelectorAll(".card img").forEach(img => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.style.display = "flex";
+        });
+      });
+
+      closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews - Fistiq Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script defer>
+    // JavaScript to control lightbox behavior
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.getElementById("close-lightbox");
+
+      document.querySelectorAll(".card img").forEach(img => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.style.display = "flex";
+        });
+      });
+
+      closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/WhatsApp Image 2025-07-09 at 11.20.47 PM.png" alt="Fistiq Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#products" class="nav-link">Products</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+      <li><a href="reviews.html" class="nav-link active">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- Reviews Section -->
+  <section class="about">
+    <h2>Customer Reviews</h2>
+    <p>We deeply value our customers' feedback. Each review helps us grow and reminds us why we do what we do. Thank you for being part of the Fistiq Store journey!</p>
+  </section>
+
+  <section class="products">
+    <div class="cards">
+      <div class="card"><img src="images/review/471850968_794579656158662_1490070990738664255_n.jpg" alt="Review 1"></div>
+      <div class="card"><img src="images/review/472055302_998364615458697_5014877648190672856_n.jpg" alt="Review 2"></div>
+      <div class="card"><img src="images/review/472190853_3926858940965419_8494223941306665026_n.jpg" alt="Review 3"></div>
+      <div class="card"><img src="images/review/473819806_3828447177418371_4774320041427314895_n.jpg" alt="Review 4"></div>
+      <div class="card"><img src="images/review/476894087_17896875708138002_7535973813149851416_n.jpg" alt="Review 5"></div>
+      <div class="card"><img src="images/review/477486577_17897123385138002_8267156573688541105_n.jpg" alt="Review 6"></div>
+      <div class="card"><img src="images/review/483024439_17899813380138002_3942037952603096284_n.jpg" alt="Review 7"></div>
+      <div class="card"><img src="images/review/491429026_17906116143138002_2979140272552983018_n.jpg" alt="Review 8"></div>
+      <div class="card"><img src="images/review/491493131_17905559181138002_5701347385979258738_n.jpg" alt="Review 9"></div>
+      <div class="card"><img src="images/review/495380026_17906855415138002_2257134166620701605_n.jpg" alt="Review 10"></div>
+    </div>
+  </section>
+
+  <!-- Lightbox Popup -->
+  <div id="lightbox" class="lightbox">
+    <button id="close-lightbox" class="lightbox-close">&times;</button>
+    <img id="lightbox-img" src="" alt="Full Image" />
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Fistiq Store</p>
+  </footer>
+</body>
+</html>
