@@ -6,6 +6,7 @@
   <title>Fistiq Store</title>
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=JOD"></script>
 </head>
 <body>
 <nav class="navbar">
@@ -16,23 +17,16 @@
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html#home" class="nav-link">Home</a></li>
     <li><a href="index.html#products" class="nav-link">Products</a></li>
-    <li><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+    <li><a href="index.html#contact" class="nav-link">Order</a></li>
     <li><a href="reviews.html" class="nav-link">Reviews</a></li>
   </ul>
 </nav>
 
   <section class="hero" id="home">
     <div class="hero-leaf">
-      <h1>Fistiq Store turns your memories into elegant,<br>
-        personalized illustrated gifts.<br>
-        — we make your stories last forever.</h1>
-      <p>
-        <strong>📞 Phone:</strong> <a href="tel:+962799437000">+962 79 943 7000</a>
-      </p>
-      <p>
-        <strong>📷 Instagram:</strong>
-        <a href="https://instagram.com/fistiq.store" target="_blank">@fistiq.store</a>
-      </p>
+      <h1>Fistiq Store turns your memories into elegant,<br> personalized illustrated gifts.<br> — we make your stories last forever.</h1>
+      <p><strong>📞 Phone:</strong> <a href="tel:+962799437000">+962 79 943 7000</a></p>
+      <p><strong>📷 Instagram:</strong> <a href="https://instagram.com/fistiq.store" target="_blank">@fistiq.store</a></p>
     </div>
   </section>
 
@@ -49,43 +43,71 @@ Join our community on Instagram @fistiq.store and discover how we transform your
   <section class="products" id="products">
     <h2>Our Products</h2>
     <div class="cards">
-      <div class="card">
-        <img src="images/bestfriend.png" alt="Best Friends">
-        <h3>Best Friends Mugs</h3>
-        <a href="bestfriends.html" class="view-more">View More</a>
-      </div>
-      <div class="card">
-        <img src="images/family.png" alt="Family">
-        <h3>Family Mugs</h3>
-        <a href="family.html" class="view-more">View More</a>
-      </div>
-      <div class="card">
-        <img src="images/grad.png" alt="Graduation">
-        <h3>Graduation Mugs</h3>
-        <a href="graduation.html" class="view-more">View More</a>
-      </div>
-      <div class="card">
-        <img src="images/personal.png" alt="Personal">
-        <h3>Personal Mugs</h3>
-        <a href="personal.html" class="view-more">View More</a>
-      </div>
+      <div class="card"><img src="images/bestfriend.png" alt="Best Friends"><h3>Best Friends Mugs</h3><a href="bestfriends.html" class="view-more">View More</a></div>
+      <div class="card"><img src="images/family.png" alt="Family"><h3>Family Mugs</h3><a href="family.html" class="view-more">View More</a></div>
+      <div class="card"><img src="images/grad.png" alt="Graduation"><h3>Graduation Mugs</h3><a href="graduation.html" class="view-more">View More</a></div>
+      <div class="card"><img src="images/personal.png" alt="Personal"><h3>Personal Mugs</h3><a href="personal.html" class="view-more">View More</a></div>
     </div>
   </section>
-
+  
   <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <form action="alaaraed8989@gmail.com" method="POST" enctype="text/plain">
+    <h2>Order Now</h2>
+    <form id="orderForm" enctype="multipart/form-data">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
+      <select name="product" required>
+        <option value="" disabled selected>Select Product</option>
+        <option value="bestfriend">Best Friends Mug</option>
+        <option value="family">Family Mug</option>
+        <option value="graduation">Graduation Mug</option>
+        <option value="personal">Personal Mug</option> 
+      </select>
+       <textarea name="notes" placeholder="Any notes you'd like us to know?" rows="4" style="font-size: 1.1rem;"></textarea>
+
+      <label>Upload Reference Image:</label>
+      <input type="file" name="image" accept="image/*" required />
+      <button type="submit">Order & Pay</button>
     </form>
+    <div id="paypal-button-container"></div>
   </section>
 
   <footer>
     <p>&copy; 2025 Fistiq Store</p>
   </footer>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // PayPal logic
+    paypal.Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              currency_code: "JOD",
+              value: "7.00"
+            }
+          }]
+        });
+      },
+      onApprove: async (data, actions) => {
+        const order = await actions.order.capture();
+        const formData = new FormData(document.getElementById("orderForm"));
+        formData.append("orderID", order.id);
+
+        // إرسال البيانات إلى خادمك (تحتاج PHP أو Node.js)
+   
+      }
+    }).render("#paypal-button-container");
+  });
+</script>
 
 </body>
 </html>
+
